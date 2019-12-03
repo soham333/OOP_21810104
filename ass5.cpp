@@ -1,61 +1,83 @@
 #include<iostream>
-#include<exception>
+#include<string>
 using namespace std;
 
-class City_Exception:public exception{
-	public:
-		const char* what() const throw(){
-			return "City is not Chennai or Bangalore or Pune or Mumbai\n";
-		}
-}; 
-
-class Wheel_Exception:public exception{
-	public:
-		const char* what() const throw(){
-			return "The Vehicle is not a 4-Wheeler\n";
-		}
-}; 
-
-int main()
+class test
 {
-	string city;
-	int wheels;
+	private:
+	string city,city1;
+	int veh_type;
 	
-	try{
-		cout<<"Enter City: ";
+	public:
+	void city_name()
+	{
+		cout<<"ENTER THE NAME OF CITY"<<'\n';
 		cin>>city;
-		if(city!="Pune" && city!="Mumbai" && city!="Chennai" && city!="Bangelore")
-        {
-			City_Exception ce;
-			throw ce;
-		}
 	
-		else
+		try
 		{
-			cout<<"City: "<<city<<endl;
+			
+			if ( (city=="PUNE") || (city=="Pune") || (city=="pune") || (city=="BANGLORE") || (city=="Banglore") || (city=="banglore") || (city=="MUMBAI") || ( city=="Mumbai" )|| (city== "mumbai" ) || (city== "CHENNAI" ) || (city== "Chennai" ) || (city== "chennai" ) )
+		
+			{
+				
+			}
+			else
+			{
+				throw 1;
+			}
+		
+			
+			
+		}
+		catch(int x)
+		{
+			switch(x)
+			{
+				case 1:cout<<"ENTERED CITY IS INVALID, PLEASE ENTER THE VALID CITY"<<'\n';
+				city_name();
+				   
+			}
 		}
 	}
+
 	
-	catch(exception& e){
-		cout<<e.what()<<endl;
-	}
-	
-	try{
-		cout<<"Enter Wheels: ";
-		cin>>wheels;
-		if(wheels!=4){
-			Wheel_Exception we;
-			throw we;
+	void veh()
+	{
+		cout<<"ENTER THE VEHICLE TYPE"<<'\n';
+		cin>>veh_type;
+		
+		try
+		{
+			if(veh_type!=4)
+			{
+				throw 2;	
+			}	
 		}
-		else{
-			cout<<"Vehicle is a 4-Wheeler"<<endl;
+		catch(int x)
+		{
+			switch(x)
+			{
+			case 2:cout<<"ENTERED TYPE OF VEHICLE IS INVALID, PLEASE ENTER THE TYPE AGAIN"<<'\n';
+					 veh();
+			}
 		}
 		
 	}
 	
-	catch(exception& e){
-		cout<<e.what()<<endl;
+	void display()
+	{
+		cout<<"ENTERED CITY IS "<<city<<" AND TYPE OF VEHICLE IS "<<veh_type;
 	}
 	
-}
 
+};
+
+
+int main()
+{
+	test e;
+	e.city_name();
+	e.veh();
+	e.display();
+}
